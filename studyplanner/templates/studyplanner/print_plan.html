@@ -1,0 +1,130 @@
+{% extends 'studyplanner/printbase.html' %}
+
+{% block title %}{{ plan.name }}{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="panels">
+			<div class="text-center printBtn">
+				<button class="btn btn-success btn-sm" onclick="window.print()">
+					<span class="glyphicon glyphicon-print"></span>&nbsp; Print
+				</button>
+			</div>
+			<h2 class="text-center pageTitle">
+				{{ plan.name }}		
+			</h2>
+			{% if not plan.is_completed %}
+				<h5 class="text-center pageTitle" style="color: red;">Deadline: {{ plan.deadline }}</h5>
+			{% else %}
+				<h5 class="text-center pageTitle" style="color: green;">Completed</h5>
+			{% endif %}
+			<div class="row">
+				<div class="table-responsive dataTable">	
+					<table class="table">
+						<thead>
+							<tr>
+								<td></td>
+								<th>Subjects</th>
+									{% for path in paths %}
+										<th>
+											<span class="pathName" title="View More">{{ path.name }}</span>
+											<br>
+											{% if path.is_completed %}
+												<span class="text-success contentfooter"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Completed</span>
+											{% else %}											
+												<span class="text-danger contentfooter">
+													<span class="glyphicon glyphicon-calendar"></span>{{path.deadline }}
+													&nbsp; 
+												</span>								
+											{% endif %}
+										</th>
+									{% endfor %}
+							</tr>
+						</thead>
+						<tbody>
+							{% for subject in plan.subject_set.all %}
+								<tr>
+									<td>
+										<span>{{ forloop.counter }}.</span>
+									</td>
+									<th>
+										<span>
+											<h4 class="pageTitle"><b>
+												<span class="subjectName" title="View More">{{ subject.name }}</span>
+											</b></h4>
+											{% if subject.is_completed %}
+												<span class="text-success contentfooter"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Completed</span>
+											{% else %}
+												<span class="text-danger contentfooter">
+													<span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Not completed
+													&nbsp; 
+													<span class="glyphicon glyphicon-calendar"></span>&nbsp;{{ subject.deadline }}
+												</span>
+											{% endif %}
+										</span>
+									</th>
+								{% for path in paths %}
+									<th>
+										{% for method in subject.method_set.all %}
+											{% if method.path == path %}
+												<span class="text-{% if method.is_completed %}success{% else %}info{%endif%} text-xs">
+													<span class="methodName" title="View More">{{ method.name }}</span>
+													{% if not method.is_completed and not subject.is_completed and not plan.is_completed %}
+													{% else %}
+														{% if method.is_completed %}
+														<span class="glyphicon glyphicon-ok-sign"></span>
+														{% endif %}
+													{% endif %}
+												</span>
+												<br>
+											{% endif %}	
+										{% endfor %}
+									</th>
+								{% endfor %}
+								</tr>
+								{% for subtopic in subject.subtopic_set.all %}
+									<tr>
+										<td></td>
+										<td>
+											<h5 class="pageTitle"><i>
+												<b class="subtopicName" title="View More">{{ subtopic.name }}</b>
+											</i></h5>
+											{% if subtopic.is_completed %}
+												<span class="text-success contentfooter"><span class="glyphicon glyphicon-ok-sign"></span>&nbsp;Completed</span>
+											{% else %}
+												<span class="text-danger contentfooter">
+												<b>
+													<span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;Not completed
+													&nbsp; <span class="glyphicon glyphicon-calendar"></span>&nbsp;{{ subtopic.deadline }}
+												</b>
+												</span>
+											{% endif %}
+										</td>
+									{% for path in paths %}
+										<td>
+											{% for method in subtopic.method_set.all %}
+												{% if method.path == path %}
+													<span class="text-{% if method.is_completed %}success{% else %}info{%endif%} text-xs">
+														<span class="methodName" title="View More">{{ method.name }}</span>
+														{% if not method.is_completed and not subtopic.subject.is_completed and not subtopic.is_completed and not plan.is_completed  %}
+														{% else %}
+															{% if method.is_completed %}
+															<span class="glyphicon glyphicon-ok-sign"></span>
+															{% endif %}
+														{% endif %}
+													</span>
+													<br>
+												{% endif %}
+											{% endfor %}
+										</td>
+									{% endfor %}
+									</tr>
+								{% endfor %}
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

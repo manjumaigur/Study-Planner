@@ -1,0 +1,86 @@
+a:hover {
+	text-decoration:none;
+}
+.contentfooter {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 8pt;
+}
+
+.itemComplete {
+	display: grid;
+}
+
+.itemComplete button:hover {
+	background-color: green;
+	color: white;
+}
+
+.itemCompletePath {
+	display: block;
+}
+
+.itemCompletePath button:hover {
+	background-color: green;
+	color: white;
+}
+
+.methodCompleteBtn:hover {
+	color: #DF9C9D;
+	cursor: pointer;	
+}
+
+.completePlan:hover {
+	background-color: green;
+	color: white;	
+}
+
+.completedPlan:hover {
+	background-color: white;
+	color: black;
+}
+
+.itemEditBtn {
+	color: #07004e;
+}
+
+.itemEditBtn:hover {
+	color: #DF9C9D;
+	cursor: pointer;
+}
+
+.removeItemBtn:hover {
+	color: #7a91c1;
+	cursor: pointer;
+}
+
+.subjectName:hover {
+	cursor: pointer;
+	color: #0088d5;
+}
+
+.pathName:hover {
+	cursor: pointer;
+	color: #0088d5;	
+}
+
+.subtopicName:hover {
+	cursor: pointer;
+	color: #0088d5;		
+}
+
+.methodName:hover {
+	color: #DF9C9D;
+	cursor: pointer;	
+}
+
+.printBtn {
+	margin-top: 25pt;
+	-webkit-print-color-adjust: exact;
+}
+
+@media print {
+	.printBtn {
+		-webkit-print-color-adjust: exact;
+		background-color: green;
+	}
+}

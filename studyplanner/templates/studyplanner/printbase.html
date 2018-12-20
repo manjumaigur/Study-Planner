@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Merienda+One|Montserrat|PT+Sans|Sanchez" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/forms.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/table.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/modal.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/plan.css' %}">
+    </head>
+
+    <body>
+        {% block content %}
+        {% endblock %}
+        <script type="text/javascript" src="{% static 'studyplanner/js/app.js' %}"></script>
+    </body>
+</html>

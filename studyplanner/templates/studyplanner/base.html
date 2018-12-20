@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        {% load staticfiles %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Merienda+One|Montserrat|PT+Sans|Sanchez" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/base.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/forms.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/table.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/modal.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'studyplanner/css/plan.css' %}">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'home' %}">StudyPlanner</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navBar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'studyplanner:create-plan' %}"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Create Plan</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'studyplanner:my-plans' %}"><span class="glyphicon glyphicon-list"></span>&nbsp; My Plans</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+        <footer class="container-fluid">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-xs-12 footerMenu">
+                        <h4 class="text-center"><b>Links</b></h4>
+                        <ul>
+                            <li>
+                                <a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>&nbsp; Home</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'studyplanner:create-plan' %}"><span class="glyphicon glyphicon-plus-sign"></span>&nbsp; Create Plan</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'studyplanner:my-plans' %}"><span class="glyphicon glyphicon-list"></span>&nbsp; My Plans</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'studyplanner:archived-plans' %}"><span class="glyphicon glyphicon-download"></span>&nbsp; Archived Plans</a>
+                            </li>                            
+                        </ul>
+                    </div>
+                </div>  
+            </div>
+        </footer>
+        <script type="text/javascript" src="{% static 'studyplanner/js/app.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'studyplanner/base.html' %}
+
+{% block title %}StudyPlanner{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="pageBody">
+		<div class="row">
+			<div class="col-sm-offset-2 col-md-offset-2 col-sm-8 col-md-8">
+				<div class="text-center" style="padding-top:35pt; padding-bottom: 35pt;">
+					<b class="extraBig">Archived Plans</b>
+					<hr>
+				</div>
+			</div>
+		</div>
+		<div class="panels">
+			{% if plans.count > 0 %}
+				{% include 'studyplanner/messages.html' %}
+				<div class="row">
+					<div class="table-responsive dataTable">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Plan no.</th>
+									<th>Name</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for plan in plans %}
+									<tr>
+										<td>{{ forloop.counter }}</td>
+										<td>{{ plan.name }}</td>
+										<td>
+											<a href="{% url 'studyplanner:unarchive-plan' pk=plan.pk %}">
+												<button class="btn btn-success"><span class="glyphicon glyphicon-upload"></span>&nbsp; Unarchive</button>
+											</a>
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			{% else %}
+				<div class="text-center">
+					<h3>No Archived Plans!</h3>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

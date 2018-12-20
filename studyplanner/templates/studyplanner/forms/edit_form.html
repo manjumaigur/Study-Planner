@@ -1,0 +1,26 @@
+{% extends 'studyplanner/base.html' %}
+
+{% block title %}Edit {{ title }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+	<div class="row">
+			<div class="col-md-offset-3 col-sm-12 col-md-6">
+				<div class="panel">
+					<div class="panel-heading pageTitle">
+						<h3 class="text-center">Edit {{ title }}</h3><hr>
+					</div>
+					<div class="panel-body">
+						{% include 'studyplanner/messages.html' %}
+						<form action="" method="post" enctype="multipart/form-data">
+							{% csrf_token %}
+							{% include 'studyplanner/forms/form_template.html' %}
+							<button type="submit" class="btn btn-success quarterWidth">Update</button>
+							<button type="reset" class="btn btn-danger quarterWidth">Reset</button>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'studyplanner/base.html' %}
+
+{% block title %}StudyPlanner{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+	<div class="pageBody">
+		<div class="row">
+			<div class="col-sm-offset-2 col-md-offset-2 col-sm-8 col-md-8">
+				<div class="text-center" style="padding-top:35pt; padding-bottom: 35pt;">
+					<b class="extraBig">My Plans</b>
+					<hr>
+				</div>
+			</div>
+		</div>
+		<div class="panels">
+			{% if plans.count > 0 %}
+				{% include 'studyplanner/messages.html' %}
+				<div class="row">
+					<div class="table-responsive dataTable">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Plan no.</th>
+									<th>Name</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for plan in plans %}
+									<tr>
+										<td>{{ forloop.counter }}</td>
+										<td>{{ plan.name }}</td>
+										<td><a href="{% url 'studyplanner:plan-detail' pk=plan.pk %}"><span class="glyphicon glyphicon-eye-open"></span>&nbsp; View</a></td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			{% else %}
+				<div class="text-center">
+					<h3>No study plans yet. <a href="{% url 'studyplanner:create-plan' %}">Create</a> a study plan now</h3>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}

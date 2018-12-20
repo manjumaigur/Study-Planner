@@ -1,0 +1,23 @@
+.fullWidth {
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 15px;
+}
+
+.quarterWidth {
+    width: 25%;
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 15px;
+}
+
+@media screen and (max-width:750px) {
+    .quarterWidth {
+        width: 100%;
+    }
+}

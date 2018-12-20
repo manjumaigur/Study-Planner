@@ -1,0 +1,9 @@
+		<form action="" method="post" enctype="multipart/form-data" id="modalForm">
+			{% csrf_token %}
+			<button type="button" onclick="sendData()" class="btn btn-success quarterWidth" id="submitBtn">Add</button>
+			<button type="reset" class="btn btn-danger quarterWidth">Reset</button>
+		</form>
+			<span id="subjectForm">{% include 'studyplanner/forms/subject_form.html' %}</span>
+			<span id="subtopicForm">{% include 'studyplanner/forms/subtopic_form.html' %}</span>
+			<span id="pathForm">{% include 'studyplanner/forms/path_form.html' %}</span>
+			<span id="methodForm">{% include 'studyplanner/forms/method_form.html' %}</span>

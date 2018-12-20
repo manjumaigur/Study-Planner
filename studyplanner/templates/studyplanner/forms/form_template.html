@@ -1,0 +1,14 @@
+{% for field in form %}
+ 	<div class="form-group">
+ 		<div class="text-center">
+	        {% for error in field.errors %}
+	            <div class="alert alert-danger">
+	                <strong>{{ error|escape }}</strong>
+	            </div>
+	        {% endfor %}
+		</div>
+		<label>{{ field.label_tag }}</label>
+   		{{ field }}
+    	{% if field.help_text %}<p class="help-block">{{ field.help_text }}</p>{% endif %}
+	</div>
+{% endfor %}

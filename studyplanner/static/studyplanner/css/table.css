@@ -1,0 +1,17 @@
+.dataTable {
+	margin-top: 20pt;
+}
+
+table {
+	font-size: 12pt;
+	font-family: 'PT Sans', sans-serif;
+	letter-spacing: 1pt;
+}
+
+table td,th,tr {
+	padding: 10pt !important;
+}
+
+table a:hover {
+	text-decoration: none;
+}

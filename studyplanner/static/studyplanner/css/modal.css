@@ -1,0 +1,55 @@
+#add_modal {
+  	display: none;
+}
+
+.CreateModal {
+	margin-top: 1.75rem;
+	background-color: white;
+	border: 1px solid #213254;
+	border-top-width: 15px;
+	box-shadow: 0 0 40px black;
+}
+
+#actionModal {
+	display: none;
+}
+
+#formModal {
+	display: none;
+}
+
+h3 {
+	display: inline-block;
+}
+
+#subjectForm {
+	display: none;
+}
+
+#subtopicForm {
+	display: none;
+}
+
+#pathForm {
+	display: none;
+}
+
+#methodForm {
+	display: none;
+}
+
+#closeBtn {
+	float: right;
+	color: #213254;
+	box-shadow: 0 0 5px black;
+}
+
+#closeBtn:hover {
+	color: #DF9C9D;
+	cursor: pointer;
+	background-color: #213254;
+}
+
+#completeDeleteBtns {
+	display: none;
+}
