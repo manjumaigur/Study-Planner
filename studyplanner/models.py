@@ -7,6 +7,7 @@ import datetime
 class Plan(models.Model):
 	name = models.CharField(max_length=100,null=False,blank=False)
 	is_completed = models.BooleanField(default=False)
+	description = models.TextField(default='')
 	deadline = models.DateField(default=datetime.date.today)
 	completed_subjects = models.IntegerField(default=0)
 	completed_paths = models.IntegerField(default=0)
@@ -22,6 +23,7 @@ class Plan(models.Model):
 class Subject(models.Model):
 	name = models.CharField(max_length=500,null=False,blank=False)
 	plan = models.ForeignKey(Plan, on_delete=models.CASCADE, null=False)
+	description = models.TextField(default='')
 	is_completed = models.BooleanField(default=False)
 	deadline = models.DateField(default=datetime.date.today)
 	completed_subtopics = models.IntegerField(default=0)
@@ -29,7 +31,7 @@ class Subject(models.Model):
 	completed_on = models.DateField(default=datetime.date.today)
 
 	class Meta:
-		ordering = ['is_completed']
+		ordering = ['is_completed','deadline']
 
 	def __str__(self):
 		return self.name
@@ -37,6 +39,7 @@ class Subject(models.Model):
 class Path(models.Model):
 	name = models.CharField(max_length=500,null=False,blank=False)
 	plan = models.ForeignKey(Plan, on_delete=models.CASCADE, null=True)
+	description = models.TextField(default='')
 	is_completed = models.BooleanField(default=False)
 	deadline = models.DateField(default=datetime.date.today)
 	completed_methods = models.IntegerField(default=0)
@@ -51,13 +54,14 @@ class Path(models.Model):
 class Subtopic(models.Model):
 	name = models.CharField(max_length=500,null=False,blank=False)
 	subject = models.ForeignKey(Subject, on_delete=models.CASCADE, null=False)
+	description = models.TextField(default='')
 	is_completed = models.BooleanField(default=False)
 	deadline = models.DateField(default=datetime.date.today)
 	completed_methods = models.IntegerField(default=0)
 	completed_on = models.DateField(default=datetime.date.today)
 
 	class Meta:
-		ordering = ['is_completed']
+		ordering = ['is_completed','deadline']
 
 	def __str__(self):
 		return self.name
@@ -73,7 +77,7 @@ class Method(models.Model):
 	completed_on = models.DateField(default=datetime.date.today)
 
 	class Meta:
-		ordering = ['is_completed']
+		ordering = ['is_completed','deadline']
 
 	def __str__(self):
 		return self.name

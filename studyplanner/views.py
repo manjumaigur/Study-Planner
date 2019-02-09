@@ -35,6 +35,7 @@ def create_plan(request):
 			else:
 				new_plan = Plan.objects.create(name=cd['name'])
 				new_plan.deadline = cd['deadline']
+				new_plan.description = cd['description']
 				new_plan.save()
 				messages.success(request, "Study Plan successfully added. You can add subjects and paths now.")
 				return redirect('studyplanner:plan-detail', pk=new_plan.pk)
@@ -56,6 +57,7 @@ def edit_plan(request,pk):
 				else:
 					plan.name = cd['name']
 					plan.deadline = cd['deadline']
+					plan.description = cd['description']
 					plan.save()
 					messages.success(request, "Study Plan updated successfully.")
 					return redirect('studyplanner:plan-detail', pk=pk)
@@ -134,6 +136,7 @@ def add_subject(request,pk):
 						messages.error(request, "Invalid deadline. Please fill a correct deadline.")
 					else:
 						new_subject = Subject.objects.create(name=request.POST.get('name'),plan=plan)
+						new_subject.description = request.POST.get('description')
 						new_subject.deadline = deadline
 						new_subject.save()
 						messages.success(request, "{} added successfully".format(request.POST.get('name')))
@@ -159,10 +162,11 @@ def edit_subject(request,pk):
 						return redirect('studyplanner:edit-subject', pk=pk)
 					else:
 						subject.name = cd['name']
+						subject.description = cd['description']
 						subject.deadline = cd['deadline']
 						subject.save()
 						messages.success(request, "{} updated successfully".format(cd['name']))
-						return redirect('studyplanner:plan-detail', pk=pk)
+						return redirect('studyplanner:plan-detail', pk=subject.plan.pk)
 			else:
 				form = EditSubjectForm(instance=subject)
 			return render(request, 'studyplanner/forms/edit_form.html', {'form':form,'title':title})
@@ -203,6 +207,7 @@ def add_subtopic(request,pk):
 						messages.error(request, "Invalid deadline. Please fill a correct deadline.")
 					else:
 						new_subtopic = Subtopic.objects.create(name=request.POST.get('name'),subject=subject)
+						new_subtopic.description = request.POST.get('description')
 						new_subtopic.deadline = deadline
 						new_subtopic.save()
 						messages.success(request, "{} added successfully".format(request.POST.get('name')))
@@ -228,10 +233,11 @@ def edit_subtopic(request,pk):
 						return redirect('studyplanner:edit-subtopic', pk=pk)
 					else:
 						subtopic.name = cd['name']
+						subtopic.description = cd['description']
 						subtopic.deadline = cd['deadline']
 						subtopic.save()
 						messages.success(request, "{} updated successfully".format(cd['name']))
-						return redirect('studyplanner:plan-detail', pk=pk)
+						return redirect('studyplanner:plan-detail', pk=subtopic.subject.plan.pk)
 			else:
 				form = EditSubtopicForm(instance=subtopic)
 			return render(request, 'studyplanner/forms/edit_form.html', {'form':form,'title':title})
@@ -269,6 +275,7 @@ def add_path(request,pk):
 						messages.error(request, "Invalid deadline. Please fill a correct deadline.")
 					else:
 						new_path = Path.objects.create(name=request.POST.get('name'),plan=plan)
+						new_path.description = request.POST.get('description')
 						new_path.deadline = deadline
 						new_path.save()
 						messages.success(request, "{} added successfully".format(request.POST.get('name')))
@@ -295,9 +302,10 @@ def edit_path(request,pk):
 					else:
 						path.name = cd['name']
 						path.deadline = cd['deadline']
+						path.description = cd['description']
 						path.save()
 						messages.success(request, "{} updated successfully".format(cd['name']))
-						return redirect('studyplanner:plan-detail', pk=pk)
+						return redirect('studyplanner:plan-detail', pk=path.plan.pk)
 			else:
 				form = EditPathForm(instance=path)
 		else:
@@ -373,7 +381,7 @@ def edit_method(request,pk):
 				method.description = cd['description']
 				method.save()
 				messages.success(request, "{} updated successfully".format(cd['name']))
-				return redirect('studyplanner:plan-detail', pk=pk)
+				return redirect('studyplanner:plan-detail', pk=method.path.plan.pk)
 	else:
 		form = EditMethodForm(instance=method)
 	return render(request, 'studyplanner/forms/edit_form.html', {'form':form,'title':title})

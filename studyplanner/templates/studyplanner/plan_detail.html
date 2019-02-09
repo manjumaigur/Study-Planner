@@ -46,7 +46,7 @@
 								<th>Subjects</th>
 									{% for path in paths %}
 										<th>
-											<span class="pathName" title="View More">{{ path.name }}</span>
+											<span class="pathName" title="{{ path.description }}">{{ path.name }}</span>
 										{% if not plan.is_completed %}
 											<a href="{% url 'studyplanner:edit-path' pk=path.pk %}"><span class="glyphicon glyphicon-pencil itemEditBtn" title="Edit Path details"></span></a>
 										{% endif %}
@@ -83,7 +83,7 @@
 									<th>
 										<span>
 											<h4 class="pageTitle"><b>
-												<span class="subjectName" title="View More">{{ subject.name }}</span>
+												<span class="subjectName" title="{{ subject.description }}">{{ subject.name }}</span>
 											{% if not subject.is_completed and not plan.is_completed %}
 												<a href="{% url 'studyplanner:edit-subject' pk=subject.pk %}"><span class="glyphicon glyphicon-pencil itemEditBtn" title="Edit Subject details"></span></a>
 											{% endif %}
@@ -112,7 +112,7 @@
 										{% for method in subject.method_set.all %}
 											{% if method.path == path %}
 												<span class="text-{% if method.is_completed %}success{% else %}info{%endif%} text-xs">
-													<span class="methodName" title="View More">{{ method.name }}</span>
+													<span class="methodName" title="{{method.description}}">{{ method.name }}</span>
 													{% if not method.is_completed and not subject.is_completed and not plan.is_completed %}
 														<span class="glyphicon glyphicon-minus-sign removeItemBtn" title="Remove Item" onclick="openActionModal('subjectMethod','remove','{{ method.name }}','{{ method.pk }}')"></span>
 														<a href="{% url 'studyplanner:edit-method' pk=method.pk %}"><span class="glyphicon glyphicon-pencil itemEditBtn" title="Edit Method details"></span></a>
@@ -139,7 +139,7 @@
 										<td></td>
 										<td>
 											<h5 class="pageTitle"><i>
-												<b class="subtopicName" title="View More">{{ subtopic.name }}</b>
+												<b class="subtopicName" title="{{ subtopic.description }}">{{ subtopic.name }}</b>
 												{% if not subtopic.is_completed and not subtopic.subject.is_completed and not plan.is_completed %}
 													<a href="{% url 'studyplanner:edit-subtopic' pk=subtopic.pk %}"><span class="glyphicon glyphicon-pencil itemEditBtn" title="Edit Subtopic details"></span></a>
 												{% endif %}
@@ -168,7 +168,7 @@
 											{% for method in subtopic.method_set.all %}
 												{% if method.path == path %}
 													<span class="text-{% if method.is_completed %}success{% else %}info{%endif%} text-xs">
-														<span class="methodName" title="View More">{{ method.name }}</span>
+														<span class="methodName" title="{{method.description}}">{{ method.name }}</span>
 														{% if not method.is_completed and not subtopic.subject.is_completed and not subtopic.is_completed and not plan.is_completed  %}
 															<span class="glyphicon glyphicon-minus-sign removeItemBtn" title="Remove Item" onclick="openActionModal('subtopicMethod','remove','{{ method.name }}','{{ method.pk }}')"></span>
 															<a href="{% url 'studyplanner:edit-method' pk=method.pk %}"><span class="glyphicon glyphicon-pencil itemEditBtn" title="Edit Method details"></span></a>

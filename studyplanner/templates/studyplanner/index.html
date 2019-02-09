@@ -32,7 +32,14 @@
 									<tr>
 										<td>{{ forloop.counter }}</td>
 										<td>{{ plan.name }}</td>
-										<td><a href="{% url 'studyplanner:plan-detail' pk=plan.pk %}"><span class="glyphicon glyphicon-eye-open"></span>&nbsp; View</a></td>
+										<td>
+											<a href="{% url 'studyplanner:plan-detail' pk=plan.pk %}">
+												<button class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>&nbsp; Edit</button>
+											</a>
+											<a href="{% url 'studyplanner:print-plan' pk=plan.pk %}">
+												<button class="btn btn-info"></span>&nbsp;<span class="glyphicon glyphicon-print"></span>&nbsp; View/Print</button>
+											</a>											
+										</td>
 									</tr>
 								{% endfor %}
 							</tbody>
