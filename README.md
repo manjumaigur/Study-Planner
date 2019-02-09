@@ -23,5 +23,5 @@ python manage.py runserver
 ```
 * Browse to localhost:8000
 
-![Screenshot](screenshots/home.png)
+![Screenshot](screenshots/home_page.png)
 ![Screenshot](screenshots/plan_page.png)
